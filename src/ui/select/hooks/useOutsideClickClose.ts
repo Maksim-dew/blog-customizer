@@ -23,9 +23,8 @@ export const useOutsideClickClose = ({
 		};
 
 		window.addEventListener('mousedown', handleClick);
-
-		return () => {
-			window.removeEventListener('mousedown', handleClick);
-		};
+		if (!isOpen) {
+			return window.removeEventListener('mousedown', handleClick);
+		}
 	}, [onClose, onChange, isOpen]);
 };
